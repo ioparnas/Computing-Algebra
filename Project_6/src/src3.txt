@@ -1,4 +1,4 @@
-fthinouses(k,n):={
+falling_factorial(k,n):={
 
 local counter;
 local ginomeno;
