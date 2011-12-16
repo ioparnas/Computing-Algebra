@@ -1,2 +1,12 @@
-empty
-
+stirlings2_matrix(n):={
+local pinakas;
+pinakas:=matrix(n,n);
+pinakas(0,0):=1;
+for (i=1, i<n, i++){
+  pinakas(i,i):=1; 
+  for (j=1, j<i, j++)
+    pinakas(i,j):= j*pinakas(i-1,j)+pinakas(i=1,j-1);
+  }
+return(pinakas);
+}
+:;
