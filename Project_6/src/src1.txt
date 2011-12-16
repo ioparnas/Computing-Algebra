@@ -1,15 +1,2 @@
-fthinouses(k,n):={
-
-local counter;
-local ginomeno;
-
-ginomeno:=1;
-
-for(counter:=1;counter<=n;counter++){
-    ginomeno:=ginomeno*(k-counter+1);
-}
-
-return(ginomeno);
-
-}:;
+empty
 
