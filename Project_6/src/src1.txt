@@ -1,2 +1,13 @@
-empty
+stirlings2_matrix(n):={
+local (P:=matrix(n,n,0)), c, j;
+/*arxikopoisi enos kenou pinaka diastasis nxn me 0*/
+P[0,0]:=1;         /*arxikopoisi 1ou stoixeiou tou trigwnou stin timi 1*/
+for (c:=1; c<=n; c++){ /*dimiourgia kathe grammis tou pinaka stirlings2*/
+  P[c,c]:=1;  /*topothetisi 1 se oli ti diagwnio*/
+  for (j:=1; j<c; j++){
+    P[c,j]:= j*P[c-1,j]+P[c-1,j-1];} /*gemisma tvn ipoloipvn stoixeivn prin apo to diagwnio stoixeio grammis tou pinaka me ton tipo*/
+  }
+return(P);
+}
+:;
 
