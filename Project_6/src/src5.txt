@@ -28,7 +28,7 @@ Proodos_Sum(poly, x):={
 
   poly_array:=symb2poly(expand(poly) , x);
   poly_highest:=length(poly_array)-1;
-  if(poly_highest==-1){return("non polynomial function");}
+  if(poly_highest<=-1){poly_highest:=abs(poly_highest);}
 
   s2:= stirlings2_matrix(poly_highest+1);
   for (j:=0; j<=poly_highest; j++){
