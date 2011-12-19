@@ -24,7 +24,7 @@ return(P);
 
 /////////Main Function////////////////
 Proodos_Sum(poly, x):={
-  local j, l, poly_array, poly_highest, s2, (temp:=0), (poly_sum:=0);
+  local j, l, poly_array, poly_highest, s2, (temp:=0), (poly_sum:=0); temp1; cnt;
 
   poly_array:=symb2poly(expand(poly) , x);
   poly_highest:=length(poly_array)-1;
@@ -34,10 +34,9 @@ Proodos_Sum(poly, x):={
    else  if(poly_highest<=-1){
           poly_highest:=abs(poly_highest);  
        temp1:=1/(x+1);
+  for(cnt:=2;cnt<=poly_highest;cnt++){temp1:= temp1* 1/(x+cnt);}                 
 
-
-
-                                     }
+    return(temp1);}
 
   else{
   s2:= stirlings2_matrix(poly_highest+1);
