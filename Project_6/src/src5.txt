@@ -12,10 +12,10 @@ return(Mul);
 stirlings2_matrix(n):={
 local (P:=matrix(n,n,0)), c, j;
 P[0,0]:=1;
-for (c:=1; c<n; c++){
+for (c:=1; c<=n; c++){
   P[c,c]:=1; 
-  for (j:=1; j<c; j++)
-    P[c,j]:= j*P[c-1,j]+P[c-1,j-1];
+  for (j:=1; j<c; j++){
+    P[c,j]:= j*P[c-1,j]+P[c-1,j-1];}
   }
 return(P);
 }
