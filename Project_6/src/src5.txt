@@ -1,30 +1,37 @@
-local counter;
-local ginomeno;
-
-ginomeno:=1;
-
-for(counter:=1;counter<=n;counter++){
-    ginomeno:=ginomeno*(k-counter+1);
+////////Falling factorial/////////////
+x_(k,n):={
+local c, (Mul:=1);
+for(c:=1;c<=n;c++){
+    Mul:=Mul*(k-Mul+1);
 }
-
 return(ginomeno);
-
 }:;
+//////////////////////////////////////
+
+//////Stirling 2 Numbers////////////// 
+stirlings2_matrix(n):={
+local (P:=matrix(n,n,0)), c, j;
+P[0,0]:=1;
+for (c:=1; c<n; c++){
+  P[c,c]:=1; 
+  for (j:=1; j<c; j++)
+    P[c,j]:= j*P[c-1,j]+P[c-1,j-1];
+  }
+return(P);
+}
+:;
+//////////////////////////////////////
+
+/////////Main Function////////////////
 Proodos_Sum(poly, x):={
   local j, l, poly_array, poly_size, s2, (temp:=0), (poly_sum:=0);
   poly_array:=symb2poly(expand(poly));
   poly_size:=length(poly_array);
   s2:= stirlings2_matrix(poly_size);
-
-  εκτύπωση(poly_array);
-  εκτύπωση(poly_size);
-
   for (j:=0; j<poly_size; j++){
-    εκτύπωση(s2[j]);
   }
   for (j:=0; j<poly_size; j++){
     temp:=0;
-    εκτύπωση(poly_array[j] ,"->", poly_size-1-j);
     if(poly_array[j]!=0){
       for (l:=poly_size-1-j; l>0; l--){
         temp:=temp+s2[poly_size-1-j,l]*x_(x,l+1)/(l+1);
@@ -35,3 +42,4 @@ Proodos_Sum(poly, x):={
 return(factor(poly_sum));
 }
 :;
+///////////////////////////////////////////////
