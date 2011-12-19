@@ -8,14 +8,14 @@ return(Mul);
 }:;
 //////////////////////////////////////
 
-//////Stirling 2 Numbers//////////////
+//////Stirling 2 Numbers////////////// 
 stirlings2_matrix(n):={
 local (P:=matrix(n,n,0)), c, j;
 P[0,0]:=1;
-for (c:=1; c<=n; c++){
-  P[c,c]:=1;
-  for (j:=1; j<c; j++){
-    P[c,j]:= j*P[c-1,j]+P[c-1,j-1];}
+for (c:=1; c<n; c++){
+  P[c,c]:=1; 
+  for (j:=1; j<c; j++)
+    P[c,j]:= j*P[c-1,j]+P[c-1,j-1];
   }
 return(P);
 }
@@ -24,33 +24,21 @@ return(P);
 
 /////////Main Function////////////////
 Proodos_Sum(poly, x):={
-  local j, l, poly_array, poly_highest, s2, (temp:=0), (poly_sum:=0); temp1; cnt;
+  local j, l, poly_array, poly_highest, s2, (temp:=0), (poly_sum:=0);
 
   poly_array:=symb2poly(expand(poly) , x);
   poly_highest:=length(poly_array)-1;
-
-  if(poly_highest==0){return(1);}
-
-   else if(poly_highest<=-1){
-          poly_highest:=abs(poly_highest);
-       temp1:=1/(x+1);
-  for(cnt:=2;cnt<=poly_highest;cnt++){temp1:= temp1* 1/(x+cnt);}
-
-    return(temp1);}
-
-  else{
   s2:= stirlings2_matrix(poly_highest+1);
   for (j:=0; j<=poly_highest; j++){
     temp:=0;
     if(poly_array[j]!=0){
       for (l:=poly_highest-j; l>=0; l--){
-        temp:=temp+s2[poly_highest-j,l]*x_(l);
+        temp:=temp+s2[poly_highest-j,l]*x_(n,l+1)/(l+1);
       }
       poly_sum:= poly_sum+temp*(poly_array[j]);
     }
   }
 return(factor(poly_sum));
-}
 }
 :;
 //////////////////////////////////////
