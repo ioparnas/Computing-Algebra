@@ -44,7 +44,7 @@ Proodos_Sum(poly, x):={
     temp:=0;
     if(poly_array[j]!=0){
       for (l:=poly_highest-j; l>=0; l--){
-        temp:=temp+s2[poly_highest-j,l]*x_(n,l+1)/(l+1);
+        temp:=temp+s2[poly_highest-j,l]*x_(l);
       }
       poly_sum:= poly_sum+temp*(poly_array[j]);
     }
