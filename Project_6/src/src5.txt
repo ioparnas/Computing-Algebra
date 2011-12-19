@@ -2,9 +2,9 @@
 x_(k,n):={
 local c, (Mul:=1);
 for(c:=1;c<=n;c++){
-    Mul:=Mul*(k-Mul+1);
+    Mul:=Mul*(k-c+1);
 }
-return(ginomeno);
+return(Mul);
 }:;
 //////////////////////////////////////
 
@@ -24,17 +24,15 @@ return(P);
 
 /////////Main Function////////////////
 Proodos_Sum(poly, x):={
-  local j, l, poly_array, poly_size, s2, (temp:=0), (poly_sum:=0);
+  local j, l, poly_array, poly_highest, s2, (temp:=0), (poly_sum:=0);
   poly_array:=symb2poly(expand(poly));
-  poly_size:=length(poly_array);
-  s2:= stirlings2_matrix(poly_size);
-  for (j:=0; j<poly_size; j++){
-  }
-  for (j:=0; j<poly_size; j++){
+  poly_highest:=length(poly_array)-1;
+  s2:= stirlings2_matrix(poly_highest+1);
+  for (j:=0; j<=poly_highest; j++){
     temp:=0;
     if(poly_array[j]!=0){
-      for (l:=poly_size-1-j; l>0; l--){
-        temp:=temp+s2[poly_size-1-j,l]*x_(x,l+1)/(l+1);
+      for (l:=poly_highest-j; l>=0; l--){
+        temp:=temp+s2[poly_highest-j,l]*x_(x,l+1)/(l+1);
       }
       poly_sum:= poly_sum+temp*(poly_array[j]);
     }
@@ -42,4 +40,4 @@ Proodos_Sum(poly, x):={
 return(factor(poly_sum));
 }
 :;
-///////////////////////////////////////////////
+//////////////////////////////////////
