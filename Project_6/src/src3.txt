@@ -3,10 +3,10 @@ falling_factorial(k,n):={
 local counter;
 local ginomeno;
 
-ginomeno:=1;
+ginomeno:=1;/*1os oros tou ginomenou (arxikopoisi)*/
 
-for(counter:=1;counter<=n;counter++){
-    ginomeno:=ginomeno*(k-counter+1);
+for(counter:=1;counter<=n;counter++){/*metritis apo 1 ws n gia tous n orous tou ginomenou*/
+    ginomeno:=ginomeno*(k-counter+1);/*dimiourgia tou ginomenou 1*(x-1)*(x-2)*......*(x-n+1)*/
 }
 
 return(ginomeno);
