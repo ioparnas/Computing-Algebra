@@ -28,8 +28,18 @@ Proodos_Sum(poly, x):={
 
   poly_array:=symb2poly(expand(poly) , x);
   poly_highest:=length(poly_array)-1;
-  if(poly_highest<=-1){poly_highest:=abs(poly_highest);}
 
+  if(poly_highest==0){return(1);}
+
+   else  if(poly_highest<=-1){
+          poly_highest:=abs(poly_highest);  
+       temp1:=1/(x+1);
+
+
+
+                                     }
+
+  else{
   s2:= stirlings2_matrix(poly_highest+1);
   for (j:=0; j<=poly_highest; j++){
     temp:=0;
@@ -41,6 +51,7 @@ Proodos_Sum(poly, x):={
     }
   }
 return(factor(poly_sum));
+}
 }
 :;
 //////////////////////////////////////
