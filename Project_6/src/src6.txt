@@ -14,3 +14,27 @@ Proodos_Sum(poly, x):={
       poly_sum:= poly_sum+temp*(poly_array[j]);
     }
   }
+
+
+Proodos_Sum(poly):={
+  local j, l, poly_array, poly_size, s2, temp;
+  temp:=0;
+  poly_array:=symb2poly(expand(poly));
+  poly_size:=length(poly_array);
+  s2:= stirlings2_matrix(poly_size);
+
+  print(poly_array);
+  print(poly_size);
+
+  for (j:=0; j<poly_size; j++){
+    print(s2[j]);
+  }
+  for (j:=0; j<poly_size-1; j++){
+    print(poly_array[j]);
+    for (l:=poly_size-1; l>0; l--){
+      temp:=temp+s2[j,l]*x_(l);
+      }
+    }
+return(temp);
+}
+:;
