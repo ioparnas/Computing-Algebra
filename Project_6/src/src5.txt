@@ -1,5 +1,3 @@
-x_(k,n):={
-
 local counter;
 local ginomeno;
 
@@ -12,32 +10,28 @@ for(counter:=1;counter<=n;counter++){
 return(ginomeno);
 
 }:;
-Proodos_Sum(poly):={
-  local j, l, poly_array, poly_size, s2, temp;
-  temp:=0;
+Proodos_Sum(poly, x):={
+  local j, l, poly_array, poly_size, s2, (temp:=0), (poly_sum:=0);
   poly_array:=symb2poly(expand(poly));
   poly_size:=length(poly_array);
   s2:= stirlings2_matrix(poly_size);
 
-  print(poly_array);
-  print(poly_size);
+  εκτύπωση(poly_array);
+  εκτύπωση(poly_size);
 
   for (j:=0; j<poly_size; j++){
-    print(s2[j]);
+    εκτύπωση(s2[j]);
   }
   for (j:=0; j<poly_size; j++){
-    print(poly_array[j] ,"->", poly_size-1-j);
-
+    temp:=0;
+    εκτύπωση(poly_array[j] ,"->", poly_size-1-j);
     if(poly_array[j]!=0){
-      print(skata);
       for (l:=poly_size-1-j; l>0; l--){
-      print(skata);
         temp:=temp+s2[poly_size-1-j,l]*x_(x,l+1)/(l+1);
       }
-    //  temp:= temp*(poly_array[j]);
+      poly_sum:= poly_sum+temp*(poly_array[j]);
     }
   }
-return(((temp)));
+return(factor(poly_sum));
 }
 :;
-//Proodos_Sum(x^5+x^3+ 3*x^2 + (x+1)^2)
